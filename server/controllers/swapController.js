@@ -9,6 +9,7 @@ const createSwapRequest = async (req, res) => {
 
     // Check if target user exists
     const targetUser = await User.findById(to);
+    console.log('DEBUG: targetUser for swap request:', targetUser);
     if (!targetUser) {
       return res.status(404).json({ message: 'Target user not found' });
     }
@@ -18,6 +19,8 @@ const createSwapRequest = async (req, res) => {
       return res.status(400).json({ message: 'Cannot send request to banned user' });
     }
 
+    // Debug log for privacy
+    console.log('DEBUG: targetUser.isPublic =', targetUser.isPublic);
     // Check if target user is public
     if (!targetUser.isPublic) {
       return res.status(403).json({ message: 'Cannot send request to private profile' });

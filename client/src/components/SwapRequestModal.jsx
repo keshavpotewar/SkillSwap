@@ -34,7 +34,14 @@ const SwapRequestModal = ({ isOpen, onClose, targetUser, onSuccess }) => {
       setFormData({ skillOffered: '', skillWanted: '', message: '' });
     } catch (error) {
       console.error('Error sending swap request:', error);
-      toast.error(error.response?.data?.message || 'Failed to send swap request');
+      if (error.response?.data?.errors) {
+        // Show all validation errors
+        error.response.data.errors.forEach(err => {
+          toast.error(`${err.field}: ${err.message}`);
+        });
+      } else {
+        toast.error(error.response?.data?.message || 'Failed to send swap request');
+      }
     } finally {
       setLoading(false);
     }
