@@ -150,7 +150,7 @@ const UserDetail = () => {
               </div>
             </div>
 
-            {currentUser && currentUser._id !== user._id && user.isPublic && (
+            {currentUser && currentUser._id !== user._id && (
               <div className="flex space-x-3">
                 <button
                   onClick={() => setShowSwapModal(true)}
@@ -173,14 +173,6 @@ const UserDetail = () => {
                   <FiStar className="mr-2" />
                   Leave Feedback
                 </button>
-              </div>
-            )}
-            
-            {currentUser && currentUser._id !== user._id && !user.isPublic && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                <p className="text-yellow-800 text-sm">
-                  This profile is private. You can only view public information.
-                </p>
               </div>
             )}
           </div>

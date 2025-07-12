@@ -22,9 +22,6 @@ const createSwapRequest = async (req, res) => {
     // Debug log for privacy
     console.log('DEBUG: targetUser.isPublic =', targetUser.isPublic);
     // Check if target user is public
-    if (!targetUser.isPublic) {
-      return res.status(403).json({ message: 'Cannot send request to private profile' });
-    }
 
     // Check if user is trying to send request to themselves
     if (from.toString() === to) {

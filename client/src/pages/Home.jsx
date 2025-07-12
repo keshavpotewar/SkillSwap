@@ -65,11 +65,6 @@ const Home = () => {
       navigate('/login');
       return;
     }
-    // Check if the target user's profile is public
-    if (!userItem.isPublic) {
-      toast.error('Cannot send swap request to private profile');
-      return;
-    }
     setSelectedUser(userItem);
     setSwapModalOpen(true);
   };
